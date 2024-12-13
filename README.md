@@ -147,7 +147,7 @@ def gallery_view(request):
     return render(request, 'gallery/gallery.html', {'images': images})
 ```
 ## OUTPUT:
-"C:\Users\Kabilan\Pictures\Screenshots\image galery output.png"
+![image galery output](https://github.com/user-attachments/assets/9797e7b3-b11e-4f67-b9a3-f327c42fd83e)
 
 
 ## RESULT:
