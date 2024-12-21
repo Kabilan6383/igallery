@@ -1,154 +1,139 @@
 # Ex.08 Design of Interactive Image Gallery
-## Date: 
 
-## AIM:
-To design a web application for an inteactive image gallery with minimum five images.
+## AIM
+  To design a web application for an inteactive image gallery with minimum five images.
 
-## DESIGN STEPS:
+## DESIGN STEPS
 
-### Step 1:
-Clone the github repository and create Django admin interface.
+## Step 1:
 
-### Step 2:
+Clone the github repository and create Django admin interface
+
+## Step 2:
+
 Change settings.py file to allow request from all hosts.
 
-### Step 3:
+## Step 3:
+
 Use CSS for positioning and styling.
 
-### Step 4:
-Write JavaScript program for implementing interactivity.
+## Step 4:
 
-### Step 5:
-Validate the HTML and CSS code.
+Write JavaScript program for implementing interactivit
 
-### Step 6:
+## Step 5:
+
+Validate the HTML and CSS code
+
+## Step 6:
+
 Publish the website in the given URL.
 
-## PROGRAM :
-# gallery.html
+## PROGRAM
 ```
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Gallery</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Image Gallery</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  background-color: #f3f3f3;
+  margin: 0;
+  padding: 0;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 20px;
+  justify-content: center;
+}
+
+.gallery-item {
+  width: 200px;
+  height: auto;
+  cursor: pointer;
+  border: 2px solid #ddd;
+  transition: transform 0.2s;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  max-width: 80%;
+  max-height: 80%;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+  </style>
+  <script>
+    function openModal(image) {
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImage');
+  
+  modal.style.display = "flex";
+  modalImg.src = image.src;
+}
+
+function closeModal() {
+  const modal = document.getElementById('imageModal');
+  modal.style.display = "none";
+}
+
+  </script>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+  <div class="gallery">
+    <img src="c:\Users\admin\Desktop\image 1 new web.jpeg" alt="Image 1" class="gallery-item" onclick="openModal(this)">
+    <img src="c:\Users\admin\Desktop\image 2 new web.jpeg" alt="Image 2" class="gallery-item" onclick="openModal(this)">
+    <img src="c:\Users\admin\Desktop\image 3 web.jpeg" alt="Image 3" class="gallery-item" onclick="openModal(this)">
+    <img src="c:\Users\admin\Desktop\image 4 web.jpeg" alt="Image 4" class="gallery-item" onclick="openModal(this)">
+    <img src="c:\Users\admin\Desktop\image 5 web.jpeg" alt="Image 5" class="gallery-item" onclick="openModal(this)">
 
-    <main id="gallery">
-        <div class="gallery-container">
-            <img src="c:\Users\admin\Desktop\maha.jpg" alt="Image 1" >
-            <img src="c:\Users\admin\Desktop\beach s.jpg" alt="Image 2">
-            <img src="c:\Users\admin\Desktop\nyt s.jpg" alt="Image 3" >
-            <img src="c:\Users\admin\Desktop\flowers s.jpg" alt="Image 4" >
-            <img src="c:\Users\admin\Downloads\pool s.jpg" alt="Image 5" >
-            <img src="c:\Users\admin\Desktop\food.jpg" alt="Image 6" >
-            <img src="c:\Users\admin\Desktop\akki.jpg" alt="Image 7" >
-            <img src="c:\Users\admin\Desktop\tourist .jpg" alt="Image 8" >
-            <!-- Add more images as needed -->
-        </div>
-    </main>
+  </div>
 
-    <footer>
-        <p>&copy; 2024 Your Website</p>
-    </footer>
+  <!-- Modal -->
+  <div id="imageModal" class="modal" onclick="closeModal()">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImage">
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
 ```
-##  models.py
-```
-class Image(models.Model):
-    title = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='images/')
 
-    def __str__(self):
-        return self.title
-```
-## settings.py
-```
-ALLOWED_HOSTS = ['*']
-```
-## styles.css
-```
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-header {
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-}
-
-.gallery-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    padding: 20px;
-}
-
-.gallery-container img {
-    width: 80%;
-    height: 1000;
-    border-radius: 10px;
-}
-
-footer {
-    text-align: center;
-    padding: 10px 0;
-    background-color: #f1f1f1;
-    margin-top: 20px;
-}
-
-```
-## urls.py
-```
-from .views import gallery_view
-
-urlpatterns = [
-    path('', gallery_view, name='gallery'),
-]
-```
-## views.py
-```
-from .models import Image
-
-def gallery_view(request):
-    images = Image.objects.all()
-    return render(request, 'gallery/gallery.html', {'images': images})
-```
-## OUTPUT:
-![image galery output](https://github.com/user-attachments/assets/9797e7b3-b11e-4f67-b9a3-f327c42fd83e)
+## OUTPUT
+![image galery output](https://github.com/user-attachments/assets/551313bf-54a6-46a7-ad8c-43ebd057c05f)
 
 
-## RESULT:
-The program for designing an interactive image gallery using HTML, CSS and JavaScript is executed successfully.
+
+## RESULT
+  The program for designing an interactive image gallery using HTML, CSS and JavaScript is executed successfully.
