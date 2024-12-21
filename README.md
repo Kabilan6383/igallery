@@ -131,7 +131,7 @@ function closeModal() {
 ```
 
 ## OUTPUT
-![image galery output](https://github.com/user-attachments/assets/551313bf-54a6-46a7-ad8c-43ebd057c05f)
+![Screenshot 2024-12-21 083545](https://github.com/user-attachments/assets/db16fe8f-c17e-4bad-bf3d-de10ff801db5)
 
 
 
