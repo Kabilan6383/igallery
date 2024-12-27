@@ -1,35 +1,29 @@
-# Ex.08 Design of Interactive Image Gallery
+# Interactive Image Gallery
+# Date: 26-11-2024
+# AIM
+To develop a website to display details about the places around my house.
 
-## AIM
-  To design a web application for an inteactive image gallery with minimum five images.
+# DESIGN STEPS
+## STEP 1
+Create a Django admin interface.
 
-## DESIGN STEPS
+## STEP 2
+Download your city map from Google.
 
-## Step 1:
+## STEP 3
+Using <map> tag name the map.
 
-Clone the github repository and create Django admin interface
+## STEP 4
+Create clickable regions in the image using <area> tag.
 
-## Step 2:
+## STEP 5
+Write HTML programs for all the regions identified.
 
-Change settings.py file to allow request from all hosts.
+## STEP 6
+Execute the programs and publish them.
 
-## Step 3:
-
-Use CSS for positioning and styling.
-
-## Step 4:
-
-Write JavaScript program for implementing interactivit
-
-## Step 5:
-
-Validate the HTML and CSS code
-
-## Step 6:
-
-Publish the website in the given URL.
-
-## PROGRAM
+# CODE
+```
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,33 +35,42 @@ Publish the website in the given URL.
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color:white;
+        }
+
+        h1 {
+            margin: 20px 0;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
             gap: 15px;
-            padding: 20px;
+            justify-content: center;
+            max-width: 1200px;
         }
 
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
+        .gallery img {
+            width: 180px;
+            height: 120px;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            cursor: pointer;
+            border: 3px solid transparent;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.1);
+        .gallery img:hover, .gallery img:active {
+            transform: scale(1.2);
+            border-color: #007BFF;
+            box-shadow: 0 8px 16px rgba(0, 123, 255, 0.4);
         }
 
         .modal {
@@ -77,150 +80,130 @@ Publish the website in the given URL.
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            flex-direction: column;
         }
 
-        .modal-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 80%;
-        }
-
-        .modal-content img {
-            width: 100%;
+        .modal img {
+            width: 90%;
             height: auto;
-            border-radius: 10px;
+            max-width: 1000px;
+            max-height: 80%;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+            transition: transform 0.3s ease-in-out;
         }
 
-        .modal-close {
+        .modal img:hover {
+            transform: scale(1.05);
+        }
+
+        .modal .close {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #fff;
-            border: none;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            top: 20px;
+            right: 30px;
+            font-size: 32px;
+            color: white;
             cursor: pointer;
-            font-size: 18px;
-            font-weight: bold;
+            transition: color 0.3s;
         }
 
-        .modal-close:hover {
-            background-color: #f00;
-            color: #fff;
+        .modal .close:hover {
+            color: #ff4757;
+        }
+
+        .modal .caption {
+            color: white;
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        footer {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            width: 100%;
+        }
+
+        footer a {
+            color: #007BFF;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #ff4757;
         }
     </style>
 </head>
 <body>
-    <br>
-    <br>
-    <br>
-
-    <h1 style="text-align: center; margin-top: 20px;">Interactive Photo Gallery</h1>
-    <h3 style="text-align: center; margin-top: 20px;">SANTHOSH P(24900693)</h3>
-     <br>
-     <br>
-     <br>
-     <br>
-     <br>
-
+    <h1>Interactive Photo Gallery</h1>
     <div class="gallery">
-        <div class="gallery-item" data-image="image1.jpg">
-            <img src="image 1.jpg" alt="Photo 1">
-        </div>
-        <div class="gallery-item" data-image="image2.jpg">
-            <img src="image 2.webp" alt="Photo 2">
-        </div>
-        <div class="gallery-item" data-image="image3.jpg">
-            <img src="image 3.webp" alt="Photo 3">
-        </div>
-        <div class="gallery-item" data-image="image3.jpg">
-          <img src="image 4.jpg" alt="Photo 3">
-      </div>
-      <div class="gallery-item" data-image="image3.jpg">
-        <img src="image 5.webp" alt="Photo 3">
-    </div>
-    <div class="gallery-item" data-image="image3.jpg">
-      <img src="image 6.avif" alt="Photo 3">
-  </div>
-        
+        <img src="image.png" alt="Photo 1">
+        <img src="image2.png" alt="Photo 2">
+        <img src="image3.png" alt="Photo 3" >
+        <img src="image4.png" alt="Photo 4">
+        <img src="image5.png" alt="Photo 5">
     </div>
 
-    <div class="modal" id="modal">
-        <div class="modal-content">
-            <button class="modal-close" id="closeModal">&times;</button>
-            <img id="modalImage" src="" alt="">
-        </div>
+    <div class="modal" id="photoModal">
+        <span class="close" id="closeModal">&times;</span>
+        <img src="" alt="" id="modalImg">
+        <div class="caption" id="modalCaption"></div>
     </div>
+
+    <footer>
+        <p>Designed by <a href="#"> BHARANIDHARAN R</a>.</p>
+    </footer>
 
     <script>
-        const galleryItems = document.querySelectorAll('.gallery-item');
-        const modal = document.getElementById('modal');
-        const modalImage = document.getElementById('modalImage');
+        // Select elements
+        const gallery = document.querySelector('.gallery');
+        const modal = document.getElementById('photoModal');
+        const modalImg = document.getElementById('modalImg');
+        const modalCaption = document.getElementById('modalCaption');
         const closeModal = document.getElementById('closeModal');
 
-        galleryItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const imgSrc = item.getAttribute('data-image');
-                modalImage.src = imgSrc;
+        // Open modal on photo click
+        gallery.addEventListener('click', (e) => {
+            if (e.target.tagName === 'IMG') {
                 modal.style.display = 'flex';
-            });
+                modalImg.src = e.target.src;
+                modalCaption.textContent = e.target.getAttribute('data-caption');
+            }
         });
 
+        // Close modal on close button click
         closeModal.addEventListener('click', () => {
             modal.style.display = 'none';
         });
 
+        // Close modal on outside click
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 modal.style.display = 'none';
             }
         });
     </script>
-
 </body>
 </html>
 
-models.py
 
-from django.db import models
+```
+# OUTPUT
 
-class Image(models.Model):
-    title = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='images/')
+![Screenshot 2024-12-27 232705](https://github.com/user-attachments/assets/7b5cccf7-1e12-4d0a-8429-00b655f47f4d)
 
-    def __str__(self):
-        return self.title
 
- views.py
-
-from django.shortcuts import render
-from .models import Image
-
-def gallery_view(request):
-    images = Image.objects.all()
-    return render(request, 'gallery/gallery.html', {'images': images})
-
-urls.py
-
-from django.urls import path
-from .views import gallery_view
-
-urlpatterns = [
-    path('', gallery_view, name='gallery'),
-]
-       
-## OUTPUT
-![Screenshot 2024-12-21 083545](https://github.com/user-attachments/assets/8509ef41-d96c-4a0e-aef9-3abe7a29e5c5)
+![Screenshot 2024-12-27 232718](https://github.com/user-attachments/assets/539769a0-d139-41af-9a3e-d9ec38c6acf8)
 
 
 
-## RESULT
-  The program for designing an interactive image gallery using HTML, CSS and JavaScript is executed successfully.
+# RESULT
+The program for implementing image maps using HTML is executed successfully.
